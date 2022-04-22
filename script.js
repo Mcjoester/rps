@@ -9,7 +9,7 @@ function computerPlay() {
 //Function for User Choice
 function getUserChoice() {
     let userInput = prompt("Choose: Rock, Paper, or Scissors");
-    userInput = userInput.toLocaleLowerCase();
+    userInput = userInput.toLowerCase();
     if (userInput === "rock" || userInput === "scissors" || userInput === "paper") {
         return userInput;
     } else {
