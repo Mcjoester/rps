@@ -1,11 +1,23 @@
 // Array for computer to choose between Rock, Paper, and Scissors
 let options = ["rock", "paper", "scissors"];
 
-// Function for computer choice 
+// Function for Computer Choice 
 function computerPlay() {
     return options[Math.floor(Math.random()*options.length)];
 }
 
+//Function for User Choice
+function getUserChoice() {
+    let userInput = prompt("Choose: Rock, Paper, or Scissors");
+    userInput = userInput.toLocaleLowerCase();
+    if (userInput === "rock" || userInput === "scissors" || userInput === "paper") {
+        return userInput;
+    } else {
+        console.log("Error, please type: rock, paper, or scissors.")
+    }
+}
+
+//Function to play a round of Rock Paper Scissors 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         return "Draw";
@@ -25,7 +37,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
-const playerSelection = "rock";
+const playerSelection = getUserChoice();
 const computerSelection = computerPlay();
 console.log(`You chose: ${playerSelection}`);
 console.log(`Computer chose: ${computerSelection}`);
