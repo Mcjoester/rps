@@ -1,3 +1,8 @@
+// Scores for game
+let playerScore = 0;
+let computerScore = 0;
+const buttons = document.querySelectorAll('input');
+
 // Array for computer to choose between Rock, Paper, and Scissors
 let options = ["rock", "paper", "scissors"];
 
@@ -6,66 +11,78 @@ function computerPlay() {
     return options[Math.floor(Math.random()*options.length)];
 }
 
-//Function for User Choice
-function getUserChoice() {
-    let userInput = prompt("Choose: Rock, Paper, or Scissors");
-    userInput = userInput.toLowerCase();
-    if (userInput === "rock" || userInput === "scissors" || userInput === "paper") {
-        return userInput;
-    } else {
-        console.log("Error, please type: rock, paper, or scissors.")
-    }
+
+// Disable button function
+function disableButtons() {
+    buttons.forEach(elem => {
+        elem.disabled = true
+    })
 }
-
-// Scores for game
-let playerScore = 0;
-let computerScore = 0;
-
 
 //Function to play a round of Rock Paper Scissors 
-function playRound(playerSelection, computerSelection) {
-    if (playerSelection === computerSelection) {
-        return "Draw";
-    } else if ((playerSelection == "rock") && (computerSelection == "scissors")) {
-        playerScore++
-        return "You win! Rock beats scissors!";
-    } else if ((playerSelection == "paper") && (computerSelection == "rock")) {
-        playerScore++
-        return "You win! Paper beats rock!";
-    } else if ((playerSelection == "scissors") && (computerSelection == "paper")) {
-        playerScore++
-        return "You win! Scissors beats paper!";
-    } else if ((playerSelection == "paper") && (computerSelection == "scissors")) {
-        computerScore++
-        return "You lose! Scissors beats paper!";
-    } else if ((playerSelection == "scissors") && (computerSelection == "rock")) {
-        computerScore++
-        return "You lose! Rock beats scissors!";
-    } else if ((playerSelection == "rock") && (computerSelection == "paper")) {
-        computerScore++
-        return "You lose! Paper beats rock!";
+function playRound(playerSelection) {
+    let computerSelection = computerPlay();
+    let result = "";
+
+
+    if ((playerSelection == 'rock' && computerSelection == 'scissors') ||
+    (playerSelection == 'scissors' && computerSelection == 'paper') ||
+    (playerSelection == 'paper' && computerSelection == 'rock')) {
+    
+    playerScore += 1
+    result = 'Computer chose: ' + computerSelection + '<br><br>You chose: ' + playerSelection + 
+    '<br><br> You win! ' + playerSelection + ' beats ' + computerSelection + '<br><br>Player score: ' + playerScore + '<br>Computer score: ' + computerScore;
+
+    if (playerScore == 5) {
+        result += '<br><br>You won the game! Reload the page to play again'
+        disableButtons()
+    }
+}
+else if (playerSelection == computerSelection) {
+    result = ('Computer chose: ' + computerSelection + '<br><br>You chose: ' + playerSelection + '<br><br>It\'s a tie. You both chose ' + playerSelection
+        + "<br><br>Player score: " + playerScore + "<br>Computer score: " + computerScore)
+}
+else {
+    computerScore += 1
+    result = ('Computer chose: ' + computerSelection + '<br><br>You chose: ' + playerSelection + '<br><br>You lose! ' + computerSelection + ' beats ' + playerSelection
+        + "<br><br>Player score: " + playerScore + "<br>Computer score: " + computerScore)
+
+    if (computerScore == 5) {
+        result += '<br><br>I won the game! Reload the page to play again'
+        disableButtons()
     }
 }
 
-
-// Game function to run 5 rounds 
-function game() {
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = getUserChoice();
-        let computerSelection = computerPlay();
-        console.log("Computer Chose: " + computerSelection + "\nYou chose: " + playerSelection);
-        let returned = playRound(playerSelection, computerSelection);
-        console.log(returned + "\n");
-    }
-
-    if (playerScore == computerScore) {
-        console.log("Player score: " + playerScore + "\nComputer score: " + computerScore + "\nThe game is a tie");
-
-    } else if (playerScore > computerScore) {
-        console.log("Player score: " + playerScore + "\nComputer score: " + computerScore + '\nYou win the game!');
-    } else if (computerScore > playerScore) {
-        console.log("Player score: " + playerScore + "\nComputer score: " + computerScore + "\nComputer wins the game!");
-    }
+document.getElementById('result').innerHTML = result
+return
 }
 
-game();
+
+buttons.forEach(button =>{
+button.addEventListener('click', function(){
+    playRound(button.value)
+})
+})
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+//Function for User Choice
+//function getUserChoice() {
+//    let userInput = prompt("Choose: Rock, Paper, or Scissors");
+//    userInput = userInput.toLowerCase();
+//    if (userInput === "rock" || userInput === "scissors" || userInput === "paper") {
+//        return userInput;
+//    } else {
+//        console.log("Error, please type: rock, paper, or scissors.")
+//    }
+//}
