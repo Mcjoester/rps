@@ -63,26 +63,3 @@ button.addEventListener('click', function(){
     playRound(button.value)
 })
 })
- 
-
-
-
-
-
-
-
-
-
-
-
-
-//Function for User Choice
-//function getUserChoice() {
-//    let userInput = prompt("Choose: Rock, Paper, or Scissors");
-//    userInput = userInput.toLowerCase();
-//    if (userInput === "rock" || userInput === "scissors" || userInput === "paper") {
-//        return userInput;
-//    } else {
-//        console.log("Error, please type: rock, paper, or scissors.")
-//    }
-//}
