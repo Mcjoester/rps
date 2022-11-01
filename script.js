@@ -4,7 +4,7 @@ let computerScore = 0;
 const buttons = document.querySelectorAll('input');
 
 // Array for computer to choose between Rock, Paper, and Scissors
-let options = ["rock", "paper", "scissors"];
+let options = ["Rock", "Paper", "Scissors"];
 
 // Function for Computer Choice 
 function computerPlay() {
@@ -25,9 +25,9 @@ function playRound(playerSelection) {
     let result = "";
 
 
-    if ((playerSelection == 'rock' && computerSelection == 'scissors') ||
-    (playerSelection == 'scissors' && computerSelection == 'paper') ||
-    (playerSelection == 'paper' && computerSelection == 'rock')) {
+    if ((playerSelection == 'Rock' && computerSelection == 'Scissors') ||
+    (playerSelection == 'Scissors' && computerSelection == 'Paper') ||
+    (playerSelection == 'Paper' && computerSelection == 'Rock')) {
     
     playerScore += 1
     result = 'Computer chose: ' + computerSelection + '<br><br>You chose: ' + playerSelection + 
