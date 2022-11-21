@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="stylesheet" href="reset.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&display=swap" rel="stylesheet">
@@ -20,13 +20,35 @@
             </header>
         </div>
 
-        <div class="buttons">
-            <input type="button" value="Rock"></input>
-            <input type="button" value="Paper"></input>
-            <input type="button" value="Scissors"></input>
-          </div>
+        <main>
 
-        <div id="result"></div>
+            <section id="display">
+                <div id="player" class="move-display">
+                    <h2> YOU</h2>
+                    <div class="image"></div>
+                </div>
+
+                <div id="scoreboard">
+                    <h2>Score: <span>0 - 0</span></h2>
+                    <h3 id="result" class="default">Chose a move</h3>
+                    <h3 id="info"> First to 5 wins the game</h3>
+                </div>
+
+                <div id="computer" class="move-display">
+                    <h2>COMPUTER</h2>
+                    <div class="image">
+                    </div>
+                </div>
+            </section>
+
+            <section id="buttons">
+                <button class="Rock"></button>
+                <button class="Paper"></button>
+                <button class="Scissors"></button>
+            </section>
+
+                 <div id="result"></div> 
+        </main>
         
         
         <script src="script.js" async defer></script>

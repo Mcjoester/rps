@@ -1,16 +1,17 @@
-body {
-    background-color: rgb(238, 246, 235);
+body, main, .move-display, #scoreboard, .image {
+    display: flex;
+    flex-direction: column;
+    background-color:#ffffff
 }
 
-
-
-.buttons {
+#buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 25px;
     margin-bottom: 20px;
     margin-top: 25px;
+    font-family: 'Cabin Sketch', sans-serif;
 }
 
 input {
@@ -21,12 +22,156 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Cabin Sketch';
+    font-family: 'Cabin Sketch', sans-serif;
 }
 
 header {
-    font-family: 'Cabin Sketch';
-    color: rgb(63, 141, 107);
+    font-family: 'Cabin Sketch', sans-serif;
+    color: black;
     display: flex;
     justify-content: center;
+    font-size: 30px;
 }
+
+main {
+    height: 100%;
+}
+
+#display {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    height: 100%;
+    margin-top: 7vh;
+}
+
+section div {
+    text-align: center;
+    align-items: center;
+}
+
+/* Player/CPU Selections display */
+
+.move-display {
+    align-items: center;
+    height: 100%;
+}
+
+.image {
+    box-sizing: border-box;
+    background-color: #FFF5F4;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+    min-height: 85%;
+    width: 70%;
+    margin-top: 1.5vh;
+    
+    border-color: rgb(63, 93, 141);
+    border-style: solid;
+    border-radius: 7px;
+    box-shadow: 1px 1px 5px 5px #259d74;
+}
+
+.Rock {
+    background-image: url(https://res.cloudinary.com/itsellej/image/upload/v1533400140/rock-paper-scissors/rock.png);
+}
+.Paper {
+    background-image: url(https://res.cloudinary.com/itsellej/image/upload/v1533400143/rock-paper-scissors/paper.png);
+}
+.Scissors {
+    background-image: url(https://res.cloudinary.com/itsellej/image/upload/v1533400144/rock-paper-scissors/scissors.png);
+}
+
+h2 {
+    font-family: 'Cabin Sketch', sans-serif;
+    color: black;
+}
+
+/* Scoring */
+
+.move-display h2 {
+    font-size: 2.2rem;
+}
+
+#scoreboard {
+    justify-content: space-around;
+}
+
+#scoreboard h2 {
+    font-size: 2.2rem;
+}
+
+span {
+    display: block;
+}
+
+/* Round result */
+
+#result {
+    font-family: 'Cabin Sketch', sans-serif;
+    font-size: 2.2rem;
+    border-width: 4px;
+    border-style: solid;
+    width: 60%;
+}
+
+.default {
+    color: #000000;
+}
+
+.win {
+    border-color: rgb(63, 141, 107);
+    color:rgb(88, 196, 149);
+}
+
+.lose {
+    border-color: rgb(225, 36, 36);
+    color: rgb(255, 36, 36);
+}
+
+#info {
+    font-family: 'Cabin Sketch', sans-serif;
+    font-size: 1.3rem;
+    color: black;
+    margin-bottom: 1.5rem;
+}
+
+/* Selection buttons */
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 7vh;
+}
+
+#buttons button {
+    background-size: cover;
+    width: 5rem;
+    height: 5rem;
+    min-width: 50px;
+    min-height: 50px;
+    margin: 0 1.7rem 0;
+
+    border-radius: 50%;
+    border-color: black;
+    border-width: 0.25vw;
+    cursor: pointer;
+}
+
+#buttons button:hover {
+    transform: scale(1.2);
+}
+
+#buttons .Rock {
+    background-color: rgb(63, 141, 107)
+}
+
+#buttons .Paper {
+    background-color: rgb(63, 93, 141);
+}
+
+#buttons .Scissors {
+    background-color:rgb(225, 36, 36);
+}
+
