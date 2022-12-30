@@ -1,3 +1,2 @@
 # rps
-Rock Paper Scissors in the Console
-https://mcjoester.github.io/rps/
+My take at building out rock, paper, scissors 
