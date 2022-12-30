@@ -250,6 +250,7 @@ p {
 
     #player {
         grid-area: player;
+        z-index: 1;
     }
     #computer {
         grid-area: computer;
@@ -257,7 +258,6 @@ p {
     #scoreboard {
         grid-area: score;
         justify-content: space-evenly;
-        margin-top: 70px;
     }
 
     #info {
