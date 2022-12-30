@@ -8,11 +8,21 @@ for (let button of buttons) {
     button.addEventListener('click', game)
 }
 
+// Function to run game
 function game() {
     const result = playRound(this.className, computerPlay())
     updateScore(result)
 }
 
+// Function to end game
+function endGame() {
+    for (let button of buttons) {
+        button.removeEventListener('click', game)
+    }
+    setTimeout(openModal, 500)
+}
+
+// Function to update score
 function updateScore (result) {
     const liveScore = document.querySelector('h2 span')
     liveScore.innerText = `${playerScore} - ${computerScore}`
@@ -27,6 +37,8 @@ function computerPlay() {
     return options[Math.floor(Math.random()*options.length)];
 }
 
+
+// Function to display moves
 function displayMoves(playerSelection, computerSelection) {
     const playerClasses = document.querySelector('#player .image').classList
     playerClasses.remove(playerClasses.item(1))
@@ -44,6 +56,14 @@ function disableButtons() {
     })
 }
 
+function displayResult (result, msg) {
+    const display = document.querySelector('#result')
+    display.innerText = msg
+
+    const classes = display.classList
+    classes.remove(classes.item(0))
+    classes.add(result)
+}
 
 //Function to play a round of Rock Paper Scissors 
 function playRound(playerSelection) {
@@ -55,37 +75,60 @@ function playRound(playerSelection) {
     (playerSelection == 'Scissors' && computerSelection == 'Paper') ||
     (playerSelection == 'Paper' && computerSelection == 'Rock')) {
     
+    
+
     playerScore += 1
-    result = 'Computer chose: ' + computerSelection + '<br><br>You chose: ' + playerSelection + 
-    '<br><br> You win! ' + playerSelection + ' beats ' + computerSelection;
+    displayResult('win', 'You win!')
+    result = "You win!";
+    
 
 
     if (playerScore == 5) {
-        result += '<br><br>You won the game! Reload the page to play again'
-        disableButtons()
+        endGame()
     }
 }
 else if (playerSelection == computerSelection) {
-    result = ('Computer chose: ' + computerSelection + '<br><br>You chose: ' + playerSelection + '<br><br>It\'s a tie. You both chose ' + playerSelection)
+    displayResult('tie', 'It\'s a tie!')
+    return 'tie'
 }
 else {
     computerScore += 1
-    result = ('Computer chose: ' + computerSelection + '<br><br>You chose: ' + playerSelection + '<br><br>You lose! ' + computerSelection + ' beats ' + playerSelection)
+    displayResult('lose', 'You lose!')
+    result = "You lose!"
 
     if (computerScore == 5) {
-        result += '<br><br>I won the game! Reload the page to play again'
-        disableButtons()
+        endGame()
+    }
+}
+    document.getElementById('result').innerHTML = result
+    return
+}
+
+function openModal() {
+    const modal = document.querySelector('.modal')
+    const modalContent = document.querySelector('.modal-content')
+
+    showModal(modal, modalContent)
+    document.querySelector('#final-result').append((playerScore > computerScore) ? 'won!' : 'lost!')
+    document.querySelector('#restart-btn').addEventListener('click', () => {
+        location.reload()
+    })
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('visible')
+    })
+    for (let button of buttons) {
+        button.addEventListener ('click', (e) => {
+            e.stopPropagation()
+            showModal(modal,modalContent)
+        })
     }
 }
 
-
-
-    document.getElementById('result').innerHTML = result
-    return
-
-    
+function showModal(modal, modalContent) {
+    modal.classList.add('visible')
+    modalContent.classList.add('visible')
 }
-
 
 
 
